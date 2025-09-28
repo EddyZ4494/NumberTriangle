@@ -88,9 +88,23 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        // TODO implement this method
-        return -1;
+        if (path.isEmpty()) {
+            return this.root;
+        }
+
+        char direction = path.charAt(0);
+        String remaining = path.substring(1);
+
+        if (direction == 'l' && this.left != null) {
+            return this.left.retrieve(remaining);
+        } else if (direction == 'r' && this.right != null) {
+            return this.right.retrieve(remaining);
+        } else {
+
+            throw new IllegalArgumentException("Invalid path: " + path);
+        }
     }
+
 
     /** Read in the NumberTriangle structure from a file.
      *
